@@ -15,7 +15,7 @@
 
  
 import fileinput
-from sets import Set
+#from sets import Set
 import random
 import scipy.special
 import math
@@ -53,6 +53,7 @@ def VisualizeTopics(phi, words, num_topics, viz_threshold=9e-3):
 	    t.tick2On = False
 
 	column_labels = words_viz	#['Word ' + str(i) for i in range(1,1000)]
+
 	row_labels = ['Topic ' + str(i) for i in range(1,num_topics+1)]
 	ax.set_xticklabels(row_labels, minor=False)
 	ax.set_yticklabels(column_labels, minor=False)
@@ -71,8 +72,8 @@ def VisualizeEvolution(psi):
 	plt.show()
 
 def main():
-	resultspath = '../results/pnas_tot/'
-	tot_pickle_path = resultspath + 'pnas_tot.pickle'
+	resultspath = '../results/andres_02/'
+	tot_pickle_path = resultspath + 'tot.pickle'
 
 	tot_pickle = open(tot_pickle_path, 'rb')
 	par = pickle.load(tot_pickle)

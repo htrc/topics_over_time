@@ -19,15 +19,15 @@ import numpy as np
 import pickle
 
 def main():
-	datapath = '../../data/pnas/'
-	resultspath = '../results/pnas_tot/'
-	documents_path = datapath + 'alltitles'
-	timestamps_path = datapath + 'alltimes'
-	stopwords_path = datapath + 'allstopwords'
-	tot_topic_vectors_path = resultspath + 'pnas_tot_topic_vectors.csv'
-	tot_topic_mixtures_path = resultspath + 'pnas_tot_topic_mixtures.csv'
-	tot_topic_shapes_path = resultspath + 'pnas_tot_topic_shapes.csv'
-	tot_pickle_path = resultspath + 'pnas_tot.pickle'
+	datapath = '../data/'
+	resultspath = '../results/andres/'
+	documents_path = datapath + 'pages'
+	timestamps_path = datapath + 'dates'
+	stopwords_path = datapath + 'stopwords_en.txt'
+	tot_topic_vectors_path = resultspath + 'tot_topic_vectors.csv'
+	tot_topic_mixtures_path = resultspath + 'tot_topic_mixtures.csv'
+	tot_topic_shapes_path = resultspath + 'tot_topic_shapes.csv'
+	tot_pickle_path = resultspath + 'tot.pickle'
 
 	tot = TopicsOverTime()
 	documents, timestamps, dictionary = tot.GetPnasCorpusAndDictionary(documents_path, timestamps_path, stopwords_path)

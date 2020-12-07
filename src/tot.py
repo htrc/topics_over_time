@@ -22,6 +22,7 @@ import numpy as np
 import scipy.stats
 import pickle
 from math import log
+from copy import deepcopy
 
 class TopicsOverTime:
 	def GetPnasCorpusAndDictionary(self, documents_path, timestamps_path, stopwords_path):
@@ -36,11 +37,8 @@ class TopicsOverTime:
 			documents.append(words)
 			dictionary.update(set(words))
 		for timestamp in fileinput.input(timestamps_path):
-			num_titles = int(timestamp.strip().split()[0])
-			timestamp = float(timestamp.strip().split()[1])
-			timestamps.extend([timestamp for title in range(num_titles)])
-		for line in fileinput.input(stopwords_path):
-			stopwords.update(Set(line.lower().strip().split()))
+			date = int(timestamp.strip())
+			timestamps.append(date)
 		first_timestamp = timestamps[0]
 		last_timestamp = timestamps[len(timestamps)-1]
 		timestamps = [1.0*(t-first_timestamp)/(last_timestamp-first_timestamp) for t in timestamps]
@@ -59,9 +57,9 @@ class TopicsOverTime:
 
 	def InitializeParameters(self, documents, timestamps, dictionary):
 		par = {}						# dictionary of all parameters
-		par['dataset'] = 'pnas'			# dataset name
+		par['dataset'] = 'andres'			# dataset name
 		par['max_iterations'] = 100		# max number of iterations in gibbs sampling
-		par['T'] = 10					# number of topics
+		par['T'] = 40					# number of topics
 		par['D'] = len(documents)
 		par['V'] = len(dictionary)
 		par['N'] = [len(doc) for doc in documents]
